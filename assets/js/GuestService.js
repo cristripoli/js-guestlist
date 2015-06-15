@@ -7,8 +7,19 @@ var GuestService = {
         GuestService.saveToLocalStorage();
     },
     
-    remove: function(guest) {
-        //TODO to implement
+    remove: function(email) {
+        
+		var list = GuestService.getList(),
+		    contact;
+		for (var i = 0; i < list.length; i++) {
+			contact = list[i];
+			if(contact.email == email) {
+				list.splice(i,1);
+				GuestService.saveToLocalStorage();
+                return true;
+			}
+		}
+        return false;
     },
     
     getList: function() {
